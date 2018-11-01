@@ -1,0 +1,99 @@
+<html>
+<head>
+  <title>Placement & Training </title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+<header>
+  <div class="site-title">
+    <h1>Placement & Training <small></small>Management</h1>
+  </div>
+
+  <nav class="menu site-menu">
+        <ul>
+           <li><a href="/home">logout</a></li>
+          
+           <li><a href="/student">add student</a>
+           </li>
+           <li><a href="/teacher">add teacher</a></li>
+           <li><a href="/company">add company</a></li>
+
+
+           </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content">
+	<form method="post" action="/student">
+
+		<div class="studentdetails">
+			
+		<h1>student details</h1>
+		<tr>
+		<td>STUDENT NAME:</td>
+		<td><input type="text" name="name" placeholder="student name">
+	</div></td>
+	<td>USN:</td>
+	<input type="text" name="usn" placeholder="usn">
+	<td>email:</td>
+	<input type="text" name="email" placeholder="email">
+	<td>PASSWORD:</td>
+	<input type="password" name="password" placeholder="password">
+	<td>PHONE NO:</td>
+	<input type="text" name="phoneno" placeholder="phoneno">
+	<td>DATE OF BIRTH:</td>
+	<input type="text" name="dob" placeholder="dd/mm/yy">
+	<td>SEX:</td>
+	<select name="sex">
+  <option value="male">male</option>
+  <option value="female">female</option>
+</select>
+	
+    <td>SECTION:</td>
+    <select name="section">
+  <option value="A">A</option>
+  <option value="B">B</option>
+  <option value="C">C</option>
+  <option value="D">D</option>
+</select>
+ <td>BRANCH:</td>
+ <select name="branch">
+  <option value="cse">cse</option>
+  <option value="ise">ise</option>
+  <option value="me">me</option>
+  <option value="ece">ece</option>
+  <option value="civil">civil</option>
+</select></br>
+
+<td>YEAR OF PASSING:</td>
+<input type="number" name="year_of_passing"></br>
+
+<td>BACKLOG:</td>
+  <select name="backlog">
+  <option value="A">0</option>
+  <option value="B">1</option>
+  <option value="C">2</option>
+  <option value="D">3</option>
+</select></br>
+
+<td>CGPA:</td>
+<input type="number" name="cgpa"></br>
+
+<td>10th PERCENTAGE:</td>
+<input type="number" name="percentage"></br>
+
+<td>12th PERCENTAGE</td>
+<input type="number" name="mark"></br>
+
+<button>save</button>
+
+
+
+
+
+
+	</tr>
+	</form>
+</div>
+{{>footer}}

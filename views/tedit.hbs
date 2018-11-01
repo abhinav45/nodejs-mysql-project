@@ -1,0 +1,42 @@
+{{>header}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="card">
+  <img src="images/ras.jpg"  style="width:100%">
+  <h1>{{results.name}}</h1>
+  <h1>{{results.usn}}</h1>
+  <p>sambhram institute of technology</p>
+  <a href="#"><i class="fa fa-dribbble"></i></a> 
+  <a href="#"><i class="fa fa-twitter"></i></a> 
+  <a href="#"><i class="fa fa-linkedin"></i></a> 
+  <a href="#"><i class="fa fa-facebook"></i></a> 
+  <p><button>Contact</button></p>
+</div>
+
+
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      
+        <div class="row">
+          <div class="col-50">
+            <form method="post" action="/tedit?id={{results.id}}">
+              <input type="hidden" name="id" value="{{results.id}}">
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+            <input type="text" name="name" value="{{results.name}}">
+            <label for="usn"><i class="fa fa-user"></i>Teacher id</label>
+            <input type="text" name="tid" value="{{results.tid}}">
+
+           
+            <label for="adr"><i class="fa fa-address-card-o"></i>Department name</label>
+            <input type="text" name="department" value="{{results.department}}">
+            
+            <div class="row">
+              <div class="col-50">
+                <label for="state">age</label>
+               <input type="text" name="age" value="{{results.age}}"></br>
+               <button>update</button>
+              </div>
+              
+  
+</div>

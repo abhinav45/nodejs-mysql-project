@@ -1,0 +1,61 @@
+<html>
+<head>
+  <title>Placement & Training </title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+<header>
+  <div class="site-title">
+    <h1>Placement & Training <small></small>Management</h1>
+  </div>
+
+  <nav class="menu site-menu">
+        <ul>
+           <li><a href="/home">logout</a></li>
+          
+           <li><a href="/student">add student</a>
+           </li>
+           <li><a href="/teacher">add teacher</a></li>
+           <li><a href="/company">add company</a></li>
+
+
+           </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content">
+	<form method="post" action="/teacher">
+		<div class="teacherdetails">
+		<h1>teacher details</h1>
+		<tr>
+		<td>TEACHER NAME:</td>
+		<td><input type="text" name="name" placeholder="teacher name">
+	</div></td>
+	<td>TEACHER ID:</td>
+	<input type="text" name="tid" placeholder="id">
+	<td>PASSWORD:</td>
+	<input type="password" name="password" placeholder="password">
+	<td>DEPARTMENT NAME:</td>
+	<input type="text" name="department" placeholder="department name">
+	<td>AGE:</td>
+	<input type="text" name="age" placeholder="age">
+	<td>SEX:</td>
+	<select name="sex">
+  <option value="male">male</option>
+  <option value="female">female</option>
+</select></br>
+	
+    
+
+<button>save</button>
+
+
+
+
+
+
+	</tr>
+	</form>
+</div>
+{{>footer}}

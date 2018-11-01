@@ -1,0 +1,14 @@
+.proper button{
+display:block;
+position:absolute;
+	left:50%;
+	right:50%;
+	transform: translate(-50%,-50%);
+
+	
+	
+}
+
+.wooper{
+	text-align: center;
+}

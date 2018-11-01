@@ -1,0 +1,80 @@
+<html>
+<head>
+  <title>Placement & Training </title>
+  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+</head>
+<body>
+<header>
+  <div class="site-title">
+    <h1>Placement & Training <small></small>Management</h1>
+  </div>
+
+  <nav class="menu site-menu">
+        <ul>
+           <li><a href="/home">logout</a></li>
+          
+           <li><a href="/student">add student</a>
+           </li>
+           <li><a href="/teacher">add teacher</a></li>
+           <li><a href="/company">add company</a></li>
+
+
+           </li>
+        </ul>
+    </nav>
+</header>
+
+<div class="content">
+	<form method="post" action="/admin">
+
+		<div class="admin_content">
+		    <h2>HELLO admin</h2>
+		    
+		</div>
+		<div class="clearFix">
+		</div>
+	<div class="boxing">
+		<h1>STUDENT LIST</h1>
+		<ul class="name floatright">
+			{{#each studentdata}}
+			<li><a target="__blank" href="/profile?id={{this.id}}">{{this.name}}</a>
+				 <span><button><a target="__blank" href="/edit?id={{this.id}}">edit</a></button>
+				 	<button>remove</button>
+				 </span></li>
+			{{/each}}
+		</ul>
+	</div>
+	<div class="unboxing">
+		<h1>TEACHER LIST</h1>
+		<ul class="teacher floatright">
+			{{#each teacherdata}}
+			<li><a target="__blank" href="/tprofile?id={{this.id}}">{{this.name}}</a>
+				<span><button><a target="__blank" href="/tedit?id={{this.id}}">edit</a></button>
+					<button>remove</button>
+				</span></li>
+			{{/each}}
+			
+		</ul>
+	</div>
+	<div class="autoboxing">
+		<h1>COMPANY LIST</h1>
+		<ul class="company floatright">
+			 {{#each companydata}}
+			<li><a target="__blank" href="/cprofile?id={{this.id}}">{{this.name}}</a>
+				<span><button><a target="__blank" href="/cedit?id={{this.id}}">edit</a></button>
+					<form method="post" action="/admin">
+						<input type="hidden" name="id" value="{{this.id}}">
+						<button>remove</button>
+					</form>
+					
+				</span></li>
+			{{/each}}
+			  
+			
+		</ul>
+	</div>	
+	</form>
+
+</div>
+{{>footer}}
+

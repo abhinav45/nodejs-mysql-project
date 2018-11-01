@@ -1,0 +1,76 @@
+{{>header}}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="card">
+  <img src="images/ras.jpg"  style="width:100%">
+  <h1>{{results.name}}</h1>
+  <h2>{{results.usn}}</h2>
+    <p>sambhram institute of technology</p>
+  <a href="#"><i class="fa fa-dribbble"></i></a> 
+  <a href="#"><i class="fa fa-twitter"></i></a> 
+  <a href="#"><i class="fa fa-linkedin"></i></a> 
+  <a href="#"><i class="fa fa-facebook"></i></a> 
+  <p><button>Contact</button></p>
+</div>
+
+
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+
+        <div class="row">
+          <div class="col-50">
+            <form method="post" action="/edit?id={{results.id}}">
+              <input type="hidden" name="id" value="{{results.id}}">
+            <label for="fname"><i class="fa fa-user"></i> Full Name</label>
+           <input type="text" name="name" value="{{results.name}}">
+            <label for="usn"><i class="fa fa-user"></i>usn</label>
+            <input type="text" name="usn" value="{{results.usn}}">
+            <label for="email"><i class="fa fa-envelope"></i> Email</label>
+            <input type="text" name="email" value="{{results.email}}">
+            
+            <div class="row">
+              <div class="col-50">
+                <label for="state">phoneno.</label>
+               <input type="text" name="phoneno" value="{{results.phoneno}}">
+              </div>
+              <div class="col-50">
+                <label for="zip">date of birth</label>
+               <input type="text" name="dob" value="{{results.dob}}">
+              </div>
+            </div>
+          </div>
+
+          <div class="col-50">
+            
+            
+            <label for="cname">sex</label>
+           <input type="text" name="sex" value="{{results.sex}}">
+            <label for="ccnum">section</label>
+           <input type="text" name="section" value="{{results.section}}">
+            <label for="expmonth">branch</label>
+            <input type="text" name="branch" value="{{results.branch}}">
+            <div class="row">
+              <div class="col-50">
+                <label for="expyear">year of passing</label>
+                <input type="text" name="year_of_passing" value="{{results.year_of_passing}}">
+              </div>
+              <div class="col-50">
+                <label for="cvv">backlog</label>
+               <input type="text" name="backlog" value="{{results.backlog}}">
+                 <label for="cvv">cgpa</label>
+               <input type="text" name="cgpa" value="{{results.cgpa}}">
+                 <label for="cvv">10th percentage</label>
+                <input type="text" name="percentage" value="{{results.percentage}}">
+                 <label for="cvv">12th percentage</label>
+                <input type="text" name="mark" value="{{results.mark}}"></br>
+                <button>update</button>
+              </div>
+            </div>
+          </div>
+          </form>
+
+        </div>
+       
+  
+</div>
