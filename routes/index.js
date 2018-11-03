@@ -313,15 +313,6 @@ router.get('/home', function(req, res, next) {
 		failureRedirect:'/login'
 	})); 
 
-router.post('/login',passport.authenticate('local',{
-		successRedirect:'/admin',
-		failureRedirect:'/login'
-	}));
-
-	router.post('/login',passport.authenticate('local',{
-		successRedirect:'/admin',
-		failureRedirect:'/login'
-	}));  
 
 
 	
@@ -379,7 +370,7 @@ router.get('/teacher',authenticationMiddleware(), function(req, res, next) {
 	  res.render('teacher', { title: 'teacher'});
 	});
 
-router.get('/logout', function(req, res, next) {
+router.get('/logout', function(req,res) {
 	req.logout();
 	req.session.destroy();
 	  res.redirect('/home');
