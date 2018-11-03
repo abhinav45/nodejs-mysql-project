@@ -287,6 +287,10 @@ router.get('/home', function(req, res, next) {
 	});	
 
 
+   router.get('/adminregistration', function(req, res, next) {
+	  res.render('adminregistration', {});
+	});
+
 
 
 
@@ -375,6 +379,67 @@ router.get('/logout', function(req,res) {
 	req.session.destroy();
 	  res.redirect('/home');
 	});
+
+router.post('/adminregistration', function(req, res, next) {
+
+
+		req.checkBody('username','username field cannot be empty').notEmpty();
+		req.checkBody('username','username must be between 4-15 character long').len(4,25);
+		req.checkBody('email','the email you entered is invalid,please try again').isEmail();
+		req.checkBody('email','email address must be between 4-100 characters long,please try again').len(4,100);
+		 req.checkBody('password','password must be between 8-100 character long').len(8,100);
+		 req.checkBody('passwordMatch','password must be between 8-100 character long ').len(8,100);
+		req.checkBody('passwordMatch','passwords do not match,please try again  ').equals(req.body.password);
+
+		const errors=req.validationErrors();
+		if(errors){
+			console.log('errors:${JSON.stringify(errors)}');
+			res.render('adminregistration',{
+				title:'registration error',
+				errors:errors
+			});
+
+		}else {
+
+			const username=req.body.username;
+			const email=req.body.email;
+			const password=req.body.password;
+
+			const db=require('../db.js');
+ 
+
+
+			bcrypt.hash(password,null,null,function(err,hash){
+						db.query('INSERT INTO  adminregistration(username,email,password) VALUES (?,?,?)',[username,email,hash], function(error,results,fields){
+				if(error) throw error;
+				db.query('select last_insert_id() as adminregistration_id',function(error,results,fields){
+					if(error) throw error;
+
+				console.log(results[0]);
+				const adminregistration_id=results[0];
+				req.login(adminregistration_id,function(err){
+					res.render('adminregistration',{title:'Registration complete'});
+					
+				});
+				
+					
+						
+					
+					});
+				   
+				
+				});
+			});
+			
+	
+
+
+
+			
+		
+		}
+});
+
 
 
 
