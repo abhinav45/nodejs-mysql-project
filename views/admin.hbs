@@ -39,7 +39,11 @@
 			{{#each studentdata}}
 			<li><a target="__blank" href="/profile?id={{this.id}}">{{this.name}}</a>
 				 <span><button><a target="__blank" href="/edit?id={{this.id}}">edit</a></button>
-				 	<button>remove</button>
+				 	<form method="post" action="/admin">
+						<input type="hidden" name="id" value="{{this.id}}">
+						<button>remove</button>
+					</form>
+					
 				 </span></li>
 			{{/each}}
 		</ul>
@@ -50,7 +54,11 @@
 			{{#each teacherdata}}
 			<li><a target="__blank" href="/tprofile?id={{this.id}}">{{this.name}}</a>
 				<span><button><a target="__blank" href="/tedit?id={{this.id}}">edit</a></button>
-					<button>remove</button>
+					<form method="post" action="/admin">
+						<input type="hidden" name="id" value="{{this.id}}">
+						<button>remove</button>
+					</form>
+					
 				</span></li>
 			{{/each}}
 			

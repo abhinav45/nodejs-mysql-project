@@ -3,9 +3,10 @@
 <div class="register_wrapper">
 
   <div class="loginbox">
-    	<form method="post" action="/adminregistration">		
+    	<form method="post" action="/register">		
 	      <h1> Register</h1>
 	      <code>{{title}}</code>
+	      <input type="hidden" name="is_admin" value="1">
 	      <input type="text" name="username" placeholder="Username">
 	      <input type="text" name="email" placeholder="Email">
 	      <input type="password" name="password" placeholder="Password">

@@ -213,12 +213,12 @@ router.get('/home', function(req, res, next) {
 			db.query(sql,function(err,results,fields){
 				if(err) throw err;
 
-					//console.log(results[0]);
+					
 				res.render('tedit',{results:results[0]});
 				
 			});
 
-			//res.render('profile', { title: 'profile'});
+			
 	});	
 
 
@@ -287,11 +287,14 @@ router.get('/home', function(req, res, next) {
 	});	
 
 
-   router.get('/adminregistration', function(req, res, next) {
-	  res.render('adminregistration', {});
+  router.get('/register', function(req, res, next) {
+	  res.render('register', {});
 	});
 
 
+   router.get('/adminregistration', function(req, res, next) {
+	  res.render('adminregistration', {});
+	});
 
 
 	router.get('/studentregistration', function(req, res, next) {
@@ -315,7 +318,21 @@ router.get('/home', function(req, res, next) {
 	router.post('/login',passport.authenticate('local',{
 		successRedirect:'/admin',
 		failureRedirect:'/login'
-	})); 
+	}));
+
+	router.get('/check',function(req,res,next){
+		var is_admin=Number(req.user['is_admin']['data']);
+		var is_student=Number(req.user['is_student']['data']);
+		var is_teacher=Number(req.user['is_teacher']['data']);
+		var is_company=Number(req.user['is_company']['data']);
+			if(is_student){
+				res.render("profile");
+			}
+			
+			
+			
+
+	}); 
 
 
 
@@ -347,21 +364,67 @@ router.get('/home', function(req, res, next) {
 
 			var db = require('../db');
 
+			let sql = "delete from student where id="+id+"";
+
+			db.query(sql,function(err,results,fields){
+				if(err) throw err;
+
+					
+				res.redirect("admin");
+				
+			});
+
+			
+	});	
+
+	router.post('/admin', function(req, res, next){
+
+			console.log("id: "+req.body.id);
+
+			var id = req.body.id;
+
+			var db = require('../db');
+
+			let sql = "delete from teacher where id="+id+"";
+
+			db.query(sql,function(err,results,fields){
+				if(err) throw err;
+
+					
+				res.redirect("admin");
+				
+			});
+
+			
+	});	
+
+
+
+
+	router.post('/admin', function(req, res, next){
+
+			console.log("id: "+req.body.id);
+
+			var id = req.body.id;
+
+			var db = require('../db');
+
 			let sql = "delete from company where id="+id+"";
 
 			db.query(sql,function(err,results,fields){
 				if(err) throw err;
 
-					//console.log(results[0]);
-				// res.render('admin',{results:results[0]});
+					
 				res.redirect("admin");
 				
 			});
 
-			//res.render('profile', { title: 'profile'});
+			
 	});	
 
 
+	
+	
 	router.get('/student',authenticationMiddleware(), function(req, res, next) {
 	  res.render('student', { title: 'student'});
 	});
@@ -374,210 +437,30 @@ router.get('/teacher',authenticationMiddleware(), function(req, res, next) {
 	  res.render('teacher', { title: 'teacher'});
 	});
 
+
+
 router.get('/logout', function(req,res) {
 	req.logout();
 	req.session.destroy();
 	  res.redirect('/home');
 	});
 
-router.post('/adminregistration', function(req, res, next) {
+
+router.post('/register', function(req, res, next) {
 
 
 		req.checkBody('username','username field cannot be empty').notEmpty();
-		req.checkBody('username','username must be between 4-15 character long').len(4,25);
+		// req.checkBody('username','username must be between 4-15 character long').len(4,25);
 		req.checkBody('email','the email you entered is invalid,please try again').isEmail();
 		req.checkBody('email','email address must be between 4-100 characters long,please try again').len(4,100);
-		 req.checkBody('password','password must be between 8-100 character long').len(8,100);
-		 req.checkBody('passwordMatch','password must be between 8-100 character long ').len(8,100);
+		 // req.checkBody('password','password must be between 8-100 character long').len(8,100);
+		 // req.checkBody('passwordMatch','password must be between 8-100 character long ').len(8,100);
 		req.checkBody('passwordMatch','passwords do not match,please try again  ').equals(req.body.password);
 
 		const errors=req.validationErrors();
 		if(errors){
 			console.log('errors:${JSON.stringify(errors)}');
-			res.render('adminregistration',{
-				title:'registration error',
-				errors:errors
-			});
-
-		}else {
-
-			const username=req.body.username;
-			const email=req.body.email;
-			const password=req.body.password;
-
-			const db=require('../db.js');
- 
-
-
-			bcrypt.hash(password,null,null,function(err,hash){
-						db.query('INSERT INTO  adminregistration(username,email,password) VALUES (?,?,?)',[username,email,hash], function(error,results,fields){
-				if(error) throw error;
-				db.query('select last_insert_id() as adminregistration_id',function(error,results,fields){
-					if(error) throw error;
-
-				console.log(results[0]);
-				const adminregistration_id=results[0];
-				req.login(adminregistration_id,function(err){
-					res.render('adminregistration',{title:'Registration complete'});
-					
-				});
-				
-					
-						
-					
-					});
-				   
-				
-				});
-			});
-			
-	
-
-
-
-			
-		
-		}
-});
-
-
-
-
-router.post('/studentregistration', function(req, res, next) {
-
-
-		req.checkBody('username','username field cannot be empty').notEmpty();
-		req.checkBody('username','username must be between 4-15 character long').len(4,25);
-		req.checkBody('email','the email you entered is invalid,please try again').isEmail();
-		req.checkBody('email','email address must be between 4-100 characters long,please try again').len(4,100);
-		 req.checkBody('password','password must be between 8-100 character long').len(8,100);
-		 req.checkBody('passwordMatch','password must be between 8-100 character long ').len(8,100);
-		req.checkBody('passwordMatch','passwords do not match,please try again  ').equals(req.body.password);
-
-		const errors=req.validationErrors();
-		if(errors){
-			console.log('errors:${JSON.stringify(errors)}');
-			res.render('studentregistration',{
-				title:'registration error',
-				errors:errors
-			});
-
-		}else {
-
-			const username=req.body.username;
-			const email=req.body.email;
-			const password=req.body.password;
-
-			const db=require('../db.js');
- 
-
-
-			bcrypt.hash(password,null,null,function(err,hash){
-						db.query('INSERT INTO  studentregistration(username,email,password) VALUES (?,?,?)',[username,email,hash], function(error,results,fields){
-				if(error) throw error;
-				db.query('select last_insert_id() as studentregistration_id',function(error,results,fields){
-					if(error) throw error;
-
-				console.log(results[0]);
-				const studentregistration_id=results[0];
-				req.login(studentregistration_id,function(err){
-					res.render('studentregistration',{title:'Registration complete'});
-					
-				});
-				
-					
-						
-					
-					});
-				   
-				
-				});
-			});
-			
-	
-
-
-
-			
-		
-		}
-});
-
-router.post('/teacherregistration', function(req, res, next) {
-
-
-		req.checkBody('username','username field cannot be empty').notEmpty();
-		req.checkBody('username','username must be between 4-15 character long').len(4,25);
-		req.checkBody('email','the email you entered is invalid,please try again').isEmail();
-		req.checkBody('email','email address must be between 4-100 characters long,please try again').len(4,100);
-		 req.checkBody('password','password must be between 8-100 character long').len(8,100);
-		 req.checkBody('passwordMatch','password must be between 8-100 character long ').len(8,100);
-		req.checkBody('passwordMatch','passwords do not match,please try again  ').equals(req.body.password);
-
-		const errors=req.validationErrors();
-		if(errors){
-			console.log('errors:${JSON.stringify(errors)}');
-			res.render('teacherregistration',{
-				title:'registration error',
-				errors:errors
-			});
-
-		}else {
-
-			const username=req.body.username;
-			const email=req.body.email;
-			const password=req.body.password;
-
-			const db=require('../db.js');
- 
-
-
-			bcrypt.hash(password,null,null,function(err,hash){
-						db.query('INSERT INTO  teacherregistration(username,email,password) VALUES (?,?,?)',[username,email,hash], function(error,results,fields){
-				if(error) throw error;
-				db.query('select last_insert_id() as teacherregistration_id',function(error,results,fields){
-					if(error) throw error;
-
-				console.log(results[0]);
-				const teacherregistration_id=results[0];
-				req.login(teacherregistration_id,function(err){
-					res.render('teacherregistration',{title:'Registration complete'});
-					
-				});
-				
-					
-						
-					
-					});
-				   
-				
-				});
-			});
-			
-	
-
-
-
-			
-		
-		}
-});
-
-router.post('/companyregistration', function(req, res, next) {
-
-
-		req.checkBody('username','username field cannot be empty').notEmpty();
-		req.checkBody('username','username must be between 4-15 character long').len(4,25);
-		req.checkBody('email','the email you entered is invalid,please try again').isEmail();
-		req.checkBody('email','email address must be between 4-100 characters long,please try again').len(4,100);
-		 req.checkBody('password','password must be between 8-100 character long').len(8,100);
-		 req.checkBody('passwordMatch','password must be between 8-100 character long ').len(8,100);
-		req.checkBody('passwordMatch','passwords do not match,please try again  ').equals(req.body.password);
-
-		const errors=req.validationErrors();
-		if(errors){
-			console.log('errors:${JSON.stringify(errors)}');
-			res.render('companyregistration',{
+			res.render('register',{
 				title:'registration error',
 				errors:errors
 			});
@@ -593,34 +476,91 @@ router.post('/companyregistration', function(req, res, next) {
 
 
 			bcrypt.hash(password,null,null,function(err,hash){
-						db.query('INSERT INTO  companyregistration(username,email,password) VALUES (?,?,?,?)',[username,email,hash], function(error,results,fields){
-				if(error) throw error;
-				db.query('select last_insert_id() as companyregistration_id',function(error,results,fields){
-					if(error) throw error;
 
-				console.log(results[0]);
-				const companyregistration_id=results[0];
-				req.login(companyregistration_id,function(err){
-					res.render('companyregistration',{title:'Registration complete'});
+
+				if(req.body.is_admin !=null){
+						var is_admin = Number(req.body.is_admin);
+						db.query('INSERT INTO  main(username,email,password,is_admin) VALUES(?,?,?,?)',[username,email,hash,is_admin], 
+							function(error,results,fields){
+								if(error) throw error;
+								db.query('select last_insert_id() as  main_id',function(error,results,fields){
+									if(error) throw error;
+
+									console.log(results[0]);
+									const main_id=results[0];
+									req.login(main_id,function(err){
+										res.redirect('/users');
 					
-				});
-				
+								 });
+							});
+				   });
+				}
+
+
+			if(req.body.is_student !=null){
+				var is_student = Number(req.body.is_student);
+				db.query('INSERT INTO  main(username,email,password,is_student) VALUES(?,?,?,?)',[username,email,hash,is_student],
+				 function(error,results,fields){
+					if(error) throw error;
+					db.query('select last_insert_id() as  main_id',function(error,results,fields){
+						if(error) throw error;
+
+						console.log(results[0]);
+						const main_id=results[0];
+						req.login(main_id,function(err){
+							res.render('register',{title:'Registration complete'});
+						});
+					});	
+		
+		});
+
+	}
+
+
+		if(req.body.is_teacher !=null){
+					var is_teacher = Number(req.body.is_teacher);
 					
-						
+						db.query('INSERT INTO  main(username,email,password,is_teacher) VALUES(?,?,?,?)',[username,email,hash,is_teacher], 
+							function(error,results,fields){
+								if(error) throw error;
+						db.query('select last_insert_id() as  main_id',function(error,results,fields){
+								if(error) throw error;
+
+							console.log(results[0]);
+							const main_id=results[0];
+							req.login(main_id,function(err){
+								res.render('register',{title:'Registration complete'});
+							});
+						});
+		});
+	}
+
+
+		if(req.body.is_company !=null){
+					var is_company = Number(req.body.is_company);
 					
-					});
-				   
-				
+						db.query('INSERT INTO  main(username,email,password,is_company) VALUES(?,?,?,?)',[username,email,hash,is_company], 
+							function(error,results,fields){
+								if(error) throw error;
+						db.query('select last_insert_id() as  main_id',function(error,results,fields){
+								if(error) throw error;
+
+							console.log(results[0]);
+					const main_id=results[0];
+							req.login(main_id,function(err){
+								console.log();
+								res.render('register',{title:'Registration complete'});
+
+	
 				});
 			});
-			
-	
+	 	});
+	 }
 
 
+		});		
+	}
 
-			
-		
-		}
 });
 
 

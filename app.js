@@ -69,7 +69,7 @@ passport.use(new LocalStrategy(function(username, password, done){
     var db = require('./db');
 
 
-    db.query('SELECT id,password FROM adminregistration WHERE username= ?',[username],(err,results,fields)=>{
+    db.query('SELECT id,password,is_admin,is_student,is_teacher,is_company FROM main WHERE username= ?',[username],(err,results,fields)=>{
       if(err) {done(err);
       };
 
@@ -82,7 +82,7 @@ passport.use(new LocalStrategy(function(username, password, done){
 
       bcrypt.compare(password, hash, function(err,response){
         if(response===true){
-          return done(null, {adminregistration_id:results[0].id});
+          return done(null,{main_id:results[0].id,is_admin:results[0].is_admin,is_student:results[0].is_student,is_teacher:results[0].is_teacher,is_company:results[0].is_company});
         }else{
           return done(null,false)
         }
