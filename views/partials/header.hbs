@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>Placement & Training </title>
-  <link rel="stylesheet" type="text/css" href="stylesheets/style.css">
+  <link rel="stylesheet" type="text/css" href="/stylesheets/style.css">
 </head>
 <body>
 <header>
@@ -13,7 +13,12 @@
   <nav class="menu site-menu">
         <ul>
            <li><a href="/home">Home</a></li>
-           <li> <a href="/login">Login</a></li> 
+           {{#if isAuthenticated}}
+           <li><a href="/profile">Profile</a></li>
+           <li><a href="/logout">Logout</a></li>
+           {{/if}}
+           {{#unless isAuthenticated}}
+           <li><a href="/login">Login</a></li> 
            <li><a href="#">Register</a>
 
                 <ul>
@@ -24,6 +29,7 @@
                 </ul>
 
            </li>
+          {{/unless}}
         </ul>
     </nav>
 </header>

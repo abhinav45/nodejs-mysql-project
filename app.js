@@ -69,15 +69,15 @@ passport.use(new LocalStrategy(function(username, password, done){
     var db = require('./db');
 
 
-    db.query('SELECT id,password,is_admin,is_student,is_teacher,is_company FROM main WHERE username= ?',[username],(err,results,fields)=>{
-      if(err) {done(err);
-      };
+    db.query('SELECT * FROM main WHERE username= ?',[username],(err,results,fields)=>{
+      if(err){done(err); };
 
       if(results.length === 0){
 
            done(null,false);
 
       }else{
+
       const hash =results[0].password.toString();
 
       bcrypt.compare(password, hash, function(err,response){

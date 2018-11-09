@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3325
--- Generation Time: Nov 01, 2018 at 04:56 PM
+-- Generation Time: Nov 09, 2018 at 04:24 PM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 5.6.38
 
@@ -29,35 +29,56 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `company` (
-  `id` int(20) NOT NULL,
-  `name` varchar(60) NOT NULL,
-  `registration` varchar(20) NOT NULL,
-  `password` varchar(20) NOT NULL,
-  `year` varchar(60) NOT NULL,
-  `cgpa` varchar(60) NOT NULL,
-  `percentage` varchar(20) NOT NULL,
-  `mark` varchar(20) NOT NULL
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `registration` varchar(255) DEFAULT NULL,
+  `year` varchar(5) DEFAULT NULL,
+  `cgpa` varchar(10) DEFAULT NULL,
+  `percentage` varchar(10) DEFAULT NULL,
+  `mark` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `company`
 --
 
-INSERT INTO `company` (`id`, `name`, `registration`, `password`, `year`, `cgpa`, `percentage`, `mark`) VALUES
-(3, 'infosys', '12', '$2a$10$D7/ULdyhL3e.C', '1998', '6', '67', '56');
+INSERT INTO `company` (`id`, `name`, `registration`, `year`, `cgpa`, `percentage`, `mark`) VALUES
+(NULL, 'ESCAPE INC', '0001', '2019', '8.0', '75', '60');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `companyregistration`
+-- Table structure for table `main`
 --
 
-CREATE TABLE `companyregistration` (
-  `id` int(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `password` varchar(60) NOT NULL
+CREATE TABLE `main` (
+  `id` int(11) NOT NULL,
+  `username` varchar(255) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` binary(60) NOT NULL,
+  `is_admin` int(1) NOT NULL DEFAULT '0',
+  `is_student` int(1) NOT NULL DEFAULT '0',
+  `is_company` int(1) NOT NULL DEFAULT '0',
+  `is_teacher` int(1) NOT NULL DEFAULT '0',
+  `is_complete` int(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `main`
+--
+
+INSERT INTO `main` (`id`, `username`, `email`, `password`, `is_admin`, `is_student`, `is_company`, `is_teacher`, `is_complete`) VALUES
+(1, 'bikash11', 'bikash@gmail.com', 0x24326124313024765542366545794c6b774336554a5378466363304a2e6d6a41332f66354b6b724d7173414b61526630303278462f3972774a4f7453, 0, 1, 0, 0, 0),
+(2, 'bikash12', 'bikash@gmail.com', 0x243261243130244c2f674d344a7a69485630304c756e2f4562426577757375517045424b4e6f6f64444e50342f684d77504b3154765544555833482e, 0, 1, 0, 0, 0),
+(3, 'bikash13', 'b@mail.com', 0x243261243130246c7567644d4c4d75766d366a36424549467a724459756a457750644d707a317766733632795a67537453463639474278594d696436, 0, 1, 0, 0, 0),
+(4, 'bikash14', 'b@gmail.com', 0x243261243130244d6665756a3546792e4237373155564970657852317544797155514b5531664c796a70507659766363316f5579505048697979516d, 0, 1, 0, 0, 0),
+(5, 'bikash112', 't@gmail.com', 0x243261243130246b627736754846564e6966344b54674c47726570334f41696b6648475231585049534a4a69496741554f397577573630476f587243, 0, 1, 0, 0, 0),
+(6, 'teacher11', 't@gmail.com', 0x24326124313024435376555a2e6267647a71456b55746559526a314e654e7a38793667717a735a6b663279614353666d71735a566f57494139623447, 0, 0, 0, 1, 0),
+(7, 'teach', 't@gmail.com', 0x243261243130246c357031567a6b4157646e64344c4b30323056493775554864353358674862736735756f4d36635361566c52524d6a326a4e315543, 0, 0, 0, 1, 0),
+(8, 'teach11', 'f@gmail.com', 0x2432612431302465594c334375474b35314e4658507a6d2f452f6d424f70415134366958374b646d2f636a2e315970594b7a3836717a524465305175, 0, 0, 0, 1, 0),
+(9, 'teach12', 'teach@gmail.com', 0x243261243130247443742e5455633567457166484734383531584c6c6556674c774b513546702f792e66433935564c7178312e7454513234376f4947, 0, 0, 0, 1, 0),
+(10, 'bikash16', 'b@gmail.com', 0x243261243130247362764a4b4b684f59644265627865696f52626e7875314a2f586d4a794a41625148365162724a3979646d786a3665315852766579, 0, 1, 0, 0, 0),
+(12, 'bikash20', 'b@gmail.com', 0x2432612431302434545635727331587443776833496e502f6a4f39397552436b6a66634b305a782e622f3444524a41426c724c35783851326139444f, 0, 1, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -76,7 +97,9 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`session_id`, `expires`, `data`) VALUES
-('T4tD05l7uVceVdK-mKqIKQMq92a3305Q', 1541171047, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"passport\":{\"user\":{\"teacherregistration_id\":1}}}');
+('DfCN1zMIk4Rz6XEQWmdq_Hhd6FgVeRJo', 1541774591, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"passport\":{\"user\":{\"main_id\":4}}}'),
+('EzRVqHJh8_6h0p0A2Gy2657BGafEQUZj', 1541343905, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"passport\":{\"user\":{\"studentregistration_id\":2}}}'),
+('qFmj_-fBrk-_NzpfS8YEYD18BMD7odU4', 1541863267, '{\"cookie\":{\"originalMaxAge\":null,\"expires\":null,\"httpOnly\":true,\"path\":\"/\"},\"passport\":{\"user\":{\"main_id\":12}}}');
 
 -- --------------------------------------------------------
 
@@ -119,29 +142,6 @@ INSERT INTO `student` (`id`, `name`, `usn`, `email`, `password`, `phoneno`, `dob
 -- --------------------------------------------------------
 
 --
--- Table structure for table `studentregistration`
---
-
-CREATE TABLE `studentregistration` (
-  `id` int(20) NOT NULL,
-  `username` varchar(60) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `password` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `studentregistration`
---
-
-INSERT INTO `studentregistration` (`id`, `username`, `email`, `password`) VALUES
-(1, 'abhinav singh', 'abhibgs@gmail.com', '$2a$10$.QyFSId9PjuvB1uC8iWs9Oy8Lbf7i98sTI.KHAlGeKy0PWEJXkPG2'),
-(2, 'rahul', 'dkrk@gmail.com', '$2a$10$LvzHbXH2q1ADspneZHYLseHVXxXfXAstNILIoLl31chQPqo1IlDlW'),
-(3, 'abhinav singh', 'abhibgs@gmail.com', '$2a$10$XkHdqLCAENLrDQpxvH6E1.zPUa5pAI5eS5DGLOQjf5jDLA12sI8S.'),
-(4, 'abhinav', 'abhin@gmail.com', '$2a$10$XR0qwjbJtcSyKRa1aT/gfOUlZnUPsAB215Fm5KNXoByNCThqTxguC');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `teacher`
 --
 
@@ -165,50 +165,6 @@ INSERT INTO `teacher` (`id`, `name`, `tid`, `password`, `department`, `age`, `se
 (3, 'earana', '67', '$2a$10$iqvWQ30j4XTjl', 'cse', '54', 'male'),
 (4, 'gubbal', '78', '$2a$10$gmFfioYqIR3uN', 'me', '30', 'male');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `teacherregistration`
---
-
-CREATE TABLE `teacherregistration` (
-  `id` int(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `password` varchar(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `teacherregistration`
---
-
-INSERT INTO `teacherregistration` (`id`, `username`, `email`, `password`) VALUES
-(1, 'abhinav singh', 'abhibgs@gmail.com', '$2a$10$WhpMB0yb1htxh5nSYYN1Q.3GoOadWgwzK1hdWRLvBUtMkIbwEdRxC');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `id` mediumint(9) NOT NULL,
-  `username` varchar(255) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `password` binary(60) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`id`, `username`, `email`, `password`) VALUES
-(1, 'hari kumar', 'dkrk@gmail.com', 0x243261243130247246795761376866507a6b48384a556e2e70534d4e2e7a474b424f4c48434a4e705959762f5656773565314559576e6a654a744c61),
-(2, 'hari kumar', 'dkrk@gmail.com', 0x24326124313024494e4966664a5077776c5561646f5642626d5a3952756e586a745742436754393252754542586444557a454755476c4c6670735975),
-(3, 'hari kumar', 'dkrk@gmail.com', 0x24326124313024336a4f534858714b7a304c78424f68452f59694f6c4f36415834726b664932646946396a4f4c2e726d7561716b46504977564b442e),
-(4, 'abhin', 'anu@gmail.com', 0x2432612431302443462e447933456451747053654a4d636c2e51694d4f376b6565366a5870304b3678574f364f2e557270726b536c765971424d7632),
-(5, 'hari kumar', 'dkrk@gmail.com', 0x243261243130246b6a64356e647a6d7661677731454f31485033466b2e6a36426336464f49696a3149516d564778564d6c614877577470346d6a552e);
-
 --
 -- Indexes for dumped tables
 --
@@ -217,12 +173,12 @@ INSERT INTO `user` (`id`, `username`, `email`, `password`) VALUES
 -- Indexes for table `company`
 --
 ALTER TABLE `company`
-  ADD PRIMARY KEY (`id`);
+  ADD KEY `id` (`id`);
 
 --
--- Indexes for table `companyregistration`
+-- Indexes for table `main`
 --
-ALTER TABLE `companyregistration`
+ALTER TABLE `main`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -238,27 +194,9 @@ ALTER TABLE `student`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `studentregistration`
---
-ALTER TABLE `studentregistration`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `teacherregistration`
---
-ALTER TABLE `teacherregistration`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -266,16 +204,10 @@ ALTER TABLE `user`
 --
 
 --
--- AUTO_INCREMENT for table `company`
+-- AUTO_INCREMENT for table `main`
 --
-ALTER TABLE `company`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `companyregistration`
---
-ALTER TABLE `companyregistration`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `main`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `student`
@@ -284,28 +216,20 @@ ALTER TABLE `student`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `studentregistration`
---
-ALTER TABLE `studentregistration`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-
---
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
   MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `teacherregistration`
+-- Constraints for dumped tables
 --
-ALTER TABLE `teacherregistration`
-  MODIFY `id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT for table `user`
+-- Constraints for table `company`
 --
-ALTER TABLE `user`
-  MODIFY `id` mediumint(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+ALTER TABLE `company`
+  ADD CONSTRAINT `company_ibfk_1` FOREIGN KEY (`id`) REFERENCES `main` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
