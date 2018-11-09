@@ -6,11 +6,23 @@ var bcrypt = require('bcrypt-nodejs');
 const saltRounds = 10;
 
 
+
+router.get('/createtable',function(req,res){
+	var db = require('../db');
+	db.query('create table company(id int, name varchar(255), registration varchar(255), year varchar(5), cgpa varchar(10), percentage varchar(10), foreign key (id) references main(id) on delete cascade)',function(err){
+		if(err) throw err;
+		res.send('Table Created.')
+	});
+});
+
+
+
+router.get('/',function(req,res){
+	res.render('home');
+});
 /* GET home page. */
 router.get('/home',function(req,res){
-	console.log(req.user);
-	console.log(req.isAuthenticated()); 
-	 res.render('home');
+	res.redirect('/');
 });
 
 
@@ -19,24 +31,31 @@ router.get('/home', function(req, res, next) {
 	});
 
 	router.get('/profile', function(req, res, next){
+var db = require('../db');
 
-			console.log("id: "+req.query.id);
+		db.query('select is_admin,is_student,is_teacher,is_company from main where id=?',[req.user['main_id']],function(err,results){
 
-			var id = req.query.id;
 
-			var db = require('../db');
+				if(results[0].is_student){
 
-			let sql = "select * from student where id="+id+"";
+					res.render('cprofile',{id:req.user['main_id']});
 
-			db.query(sql,function(err,results,fields){
-				if(err) throw err;
+				}else if(results[0].is_teacher){
 
-					console.log(results[0]);
-				res.render('profile',{results:results[0]});
-				
-			});
+					res.render('tprofile',{id:req.user['main_id']});
 
-			//res.render('profile', { title: 'profile'});
+				}else {
+
+
+
+					db.query('select * from company where id=?',[req.user['main_id']],function(err,results){
+						res.render('cprofile',{results:results[0]});
+					});
+				}
+
+			
+
+		});
 	});
 
 	router.get('/tprofile', function(req, res, next) {
@@ -316,7 +335,7 @@ router.get('/home', function(req, res, next) {
 	});
 
 	router.post('/login',passport.authenticate('local',{
-		successRedirect:'/admin',
+		successRedirect:'/profile',
 		failureRedirect:'/login'
 	}));
 
@@ -442,7 +461,7 @@ router.get('/teacher',authenticationMiddleware(), function(req, res, next) {
 router.get('/logout', function(req,res) {
 	req.logout();
 	req.session.destroy();
-	  res.redirect('/home');
+	  res.redirect('/login');
 	});
 
 
@@ -489,7 +508,7 @@ router.post('/register', function(req, res, next) {
 									console.log(results[0]);
 									const main_id=results[0];
 									req.login(main_id,function(err){
-										res.redirect('/users');
+										// res.redirect('/users');
 					
 								 });
 							});
@@ -508,7 +527,7 @@ router.post('/register', function(req, res, next) {
 						console.log(results[0]);
 						const main_id=results[0];
 						req.login(main_id,function(err){
-							res.render('register',{title:'Registration complete'});
+							res.redirect('/users/edit');
 						});
 					});	
 		
@@ -529,7 +548,8 @@ router.post('/register', function(req, res, next) {
 							console.log(results[0]);
 							const main_id=results[0];
 							req.login(main_id,function(err){
-								res.render('register',{title:'Registration complete'});
+								// res.render('register',{title:'Registration complete'});
+								res.redirect('/users/edit');
 							});
 						});
 		});
@@ -549,8 +569,8 @@ router.post('/register', function(req, res, next) {
 					const main_id=results[0];
 							req.login(main_id,function(err){
 								console.log();
-								res.render('register',{title:'Registration complete'});
-
+								// res.render('register',{title:'Registration complete'});
+								res.redirect('/users/edit');
 	
 				});
 			});

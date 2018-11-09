@@ -461,7 +461,10 @@ input[type="submit"]:hover
     background: green;
 }
 .menu ul {
-    list-style: none;
+        list-style: none;
+    max-width: 1024px;
+    margin: auto;
+    padding: 1rem;
 }
 .menu ul li {
     display: inline-block;
