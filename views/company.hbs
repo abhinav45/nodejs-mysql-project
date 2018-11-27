@@ -23,41 +23,21 @@
         </ul>
     </nav>
 </header>
+<div class="wrapper">
+<div class="register_wrapper">
 
-<div class="content">
-	<form method="post" action="/company">
-		<div class="companydetails">
-		<h1>company details</h1>
-		<tr>
-		<td>COMPANY NAME:</td>
-		<td><input type="text" name="name" placeholder="company name">
-	</div></td>
-	<td>REGISTRATION NUMBER:</td>
-	<input type="text" name="registration" placeholder="number">
-	<td>PASSWORD:</td>
-	<input type="password" name="password" placeholder="password">
-
-	<td>YEAR:</td>
-	<input type="text" name="year" placeholder="year">
-
-	<h2>company crietria</h2>
-
-<td>CGPA:</td>
-<input type="number" name="cgpa"></br>
-
-<td>10th PERCENTAGE:</td>
-<input type="number" name="percentage"></br>
-
-<td>12th PERCENTAGE</td>
-<input type="number" name="mark"></br>
-
-<button>save</button>
-
-
-
-
-
-	</tr>
-	</form>
+  <div class="loginbox">
+      <form method="post" action="/admin/add">   
+        <h1> New company</h1>
+        <input type="hidden" name="is_company" value="1">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="passwordMatch" placeholder="Confirm Password">
+        <input type="submit" value="Register">
+   		   </form> 
+	</div>
 </div>
+</div>
+
 {{>footer}}

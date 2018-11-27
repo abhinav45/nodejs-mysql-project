@@ -1,7 +1,7 @@
 {{>header}}
 		{{#if is_student}}
 			<div class="content">
-	<form method="post" action="/user">
+	<form method="post" action="/users">
 		<input type="hidden" name="sid" value="{{id}}">
 		<div class="studentdetails">
 			
@@ -70,17 +70,16 @@
 		{{/if}}
 
 		{{#if is_teacher}}
-		<input type="hidden" name="tid" value="{{id}}">
+		
 			<div class="content">
 	<form method="post" action="/users">
+		<input type="hidden" name="tid" value="{{id}}">
 		<div class="teacherdetails">
 		<h1>teacher details</h1>
 		<tr>
 		<td>TEACHER NAME:</td>
 		<td><input type="text" name="name" placeholder="teacher name">
 	</div></td>
-	<td>TEACHER ID:</td>
-	<input type="text" name="tid" placeholder="id">
 	<td>DEPARTMENT NAME:</td>
 	<input type="text" name="department" placeholder="department name">
 	<td>AGE:</td>

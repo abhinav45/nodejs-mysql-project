@@ -60,6 +60,9 @@ nav {
 	margin: auto;
     max-width: 1145px;
     margin-top: 1rem;
+    text-align: center;
+
+
 }
 .design{
 	height:400px;
@@ -151,6 +154,8 @@ footer span{
 
 /* register page styles */
 
+}
+
 #login-box{
 	position:relative;
 	margin:5% auto;
@@ -228,6 +233,7 @@ transition: 0,2s ease;
 }
 .register_wrapper {
 	padding: 2rem;
+	
 }
 .dwonload{
 	width:100px;
@@ -468,7 +474,7 @@ input[type="submit"]:hover
 }
 .menu ul li {
     display: inline-block;
-    margin-right: 11rem;
+    margin-right: 9rem;
 }
 .menu ul li a {
     text-decoration: none;

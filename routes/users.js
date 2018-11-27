@@ -23,12 +23,55 @@ router.post('/',function(req,res){
 
 
 				if(results[0].is_student){
+					var id = req.body.sid;
+					var name = req.body.name;
+					var usn = req.body.usn;
+					var email= req.body.email;
+					var phoneno = req.body.phoneno;
+					var dob = req.body.dob;
+					var sex = req.body.sex;
+					var section = req.body.section;
+					var branch = req.body.branch;
+					var year_of_passing = req.body.year_of_passing;
+					var backlog = req.body.backlog;
+					var cgpa = req.body.cgpa;
+					var percentage = req.body.percentage;
+					var mark = req.body.mark;
+
+
+
+
+
+
+					
+					db.query('insert into student values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)',[id,name,usn,email,phoneno,dob,sex,section,branch,year_of_passing,backlog,cgpa,percentage,mark],function(error){
+						if(error) throw error;
+
+						res.redirect('/profile');
+					});
+
+
 
 					
 
 				}else if(results[0].is_teacher){
 
-					//teacher
+					
+					 var id = req.body.tid;
+					var name = req.body.name;
+					var department= req.body.department;
+					var age = req.body.age;
+					var sex = req.body.sex;
+					
+					db.query('insert into teacher values(?,?,?,?,?)',[id,name,department,age,sex],function(error){
+						if(error) throw error;
+
+						res.redirect('/profile');
+					});
+
+					
+				}else if(results[0].is_admin){
+					res.redirect('/profile');
 
 				}else {
 					var id = req.body.cid;

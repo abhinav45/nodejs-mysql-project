@@ -23,11 +23,6 @@
             
             <label for="fname"><i class="fa fa-user"></i> Full Name</label>
             <h1>{{results.name}}</h1>
-            <label for="usn"><i class="fa fa-user"></i>Teacher id</label>
-            <h1>{{results.tid}}</h1>
-
-            <label for="email"><i class="fa fa-envelope"></i> password</label>
-           <h1>{{results.password}}</h1>
             <label for="adr"><i class="fa fa-address-card-o"></i>Department name</label>
             <h1>{{results.department}}</h1>
             
@@ -35,6 +30,10 @@
               <div class="col-50">
                 <label for="state">age</label>
                <h1>{{results.age}}</h1>
+                <label for="usn"><i class="fa fa-user"></i>sex</label>
+            <h1>{{results.sex}}</h1></br>
+
+               <button><a target="__blank" href="/tedit?id={{results.id}}">edit profile</a></button>
               </div>
               
   
