@@ -24,38 +24,20 @@
     </nav>
 </header>
 
-<div class="content">
-	<form method="post" action="/teacher">
-		<div class="teacherdetails">
-		<h1>teacher details</h1>
-		<tr>
-		<td>TEACHER NAME:</td>
-		<td><input type="text" name="name" placeholder="teacher name">
-	</div></td>
-	<td>TEACHER ID:</td>
-	<input type="text" name="tid" placeholder="id">
-	<td>PASSWORD:</td>
-	<input type="password" name="password" placeholder="password">
-	<td>DEPARTMENT NAME:</td>
-	<input type="text" name="department" placeholder="department name">
-	<td>AGE:</td>
-	<input type="text" name="age" placeholder="age">
-	<td>SEX:</td>
-	<select name="sex">
-  <option value="male">male</option>
-  <option value="female">female</option>
-</select></br>
-	
-    
+<div class="wrapper">
+<div class="register_wrapper">
 
-<button>save</button>
-
-
-
-
-
-
-	</tr>
-	</form>
+  <div class="loginbox">
+      <form method="post" action="/admin/add">   
+        <h1> New teacher</h1>
+        <input type="hidden" name="is_teacher" value="1">
+        <input type="text" name="username" placeholder="Username">
+        <input type="text" name="email" placeholder="Email">
+        <input type="password" name="password" placeholder="Password">
+        <input type="password" name="passwordMatch" placeholder="Confirm Password">
+        <input type="submit" value="Register">
+       </form>
+    </div>
+</div>
 </div>
 {{>footer}}

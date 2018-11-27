@@ -16,8 +16,7 @@
 <div class="row">
   <div class="col-75">
     <div class="container">
-      <form action="/action_page.php">
-
+      
         <div class="row">
           <div class="col-50">
             <form method="post" action="/cedit?id={{results.id}}">
@@ -31,6 +30,16 @@
             <label for="adr"><i class="fa fa-address-card-o"></i>year</label>
            <input type="text" name="year" value="{{results.year}}">
            
+           <label for="adr"><i class="fa fa-address-card-o"></i>cgpa</label>
+           <input type="text" name="cgpa" value="{{results.cgpa}}">
+
+           <label for="adr"><i class="fa fa-address-card-o"></i>10th percentage</label>
+           <input type="text" name="percentage" value="{{results.percentage}}">
+
+           <label for="adr"><i class="fa fa-address-card-o"></i>12th percentage</label>
+           <input type="text" name="mark" value="{{results.mark}}"></br>
+           <button>update</button>
+          </form> 
 </div>            
            
               
