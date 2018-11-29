@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var db = require('../db');
 
 /* GET users listing. */
 router.get('/edit', function(req, res, next) {
@@ -94,5 +95,9 @@ router.post('/',function(req,res){
 		});
 
 });
+
+
+
+
 
 module.exports = router;

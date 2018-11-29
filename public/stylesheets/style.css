@@ -60,7 +60,7 @@ nav {
 	margin: auto;
     max-width: 1145px;
     margin-top: 1rem;
-    text-align: center;
+   
 
 
 }
@@ -317,27 +317,27 @@ input[type="submit"]:hover
 .boxing{
 //eight:400px;
 	/*background-image:url(ds.jpg);*/
-		-webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
+		/*-webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
+	box-shado*/w: 0px 1px 4px 0px rgba(0,0,0,0.75);
 	margin-top: 5px;
 	width:26%;
-	padding: 10px;
+	/*padding: 10px;*/
 	margin-right: 2%;
 	float:left;
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 
 }
 .unboxing{
 	float:left;
 	width:26%;
-	//ight: 388px;
+	/*//ight: 388px;
 	-webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-	padding:10px;
+	box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);*/
+	/*padding:10px;*/
 	margin-right: 2%;
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 
 	margin-top: 5px;
 
@@ -347,14 +347,14 @@ input[type="submit"]:hover
 .autoboxing{
 	float:left;
 	width:26%;
-//eight: 388px;
+/*//eight: 388px;
 	-webkit-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
 	-moz-box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);
-	padding:10px;
+	box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.75);*/
+	/*padding:10px;*/
 
 	margin-top: 5px;
-	background-color: #ccc;
+	/*background-color: #ccc;*/
 
 
 }
@@ -657,3 +657,58 @@ span.price {
 
 
 
+.company-list {
+	max-width: 1000px;
+	margin: auto;
+	padding: 10px;
+}
+.company-list li {
+	list-style: none;
+	text-transform: uppercase;
+	font-size: 25px;
+	background: #ccc;
+	padding: 1rem;
+	margin-bottom: 5px;
+}
+
+.palce_student {
+	width: 100%;
+	display: block;
+}
+.list_content {
+	overflow: hidden;
+}
+.list_content h1 {
+	background: #4CAF50;
+    color: #fff;
+    padding: 1rem;
+    border-radius:3px;
+}
+.place_header {
+	    background: #4CAF50;
+    padding: 1rem;
+    color: #fff;
+    border-radius: 3px;
+}
+
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    text-transform: capitalize;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+tr a {
+	font-size: 17px;
+}

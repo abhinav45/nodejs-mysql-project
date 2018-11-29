@@ -1,0 +1,29 @@
+{{>header}}
+
+<div class="company-list">
+  <code>{{msg}}</code>
+  <h1>Select Candidates:</h1>
+   
+  {{#each data}}
+      <li> <a href="/profile?id={{this.sid}}">{{this.name}}</a> <span style="float:right;"> 
+      <form method="post" style="display:inline;">
+        <input type="hidden" name="sid" value="{{this.sid}}">
+        <input type="hidden" name="name" value="{{this.name}}">
+        <input type="hidden" name="branch" value="{{this.branch}}">
+        <input type="hidden" name="section" value="{{this.section}}">
+        <input type="hidden" name="status" value="1">
+        <button>Accept</button>
+      </form> 
+
+            <form method="post" style="display:inline;">
+        <input type="hidden" name="sid" value="{{this.sid}}">
+        <input type="hidden" name="name" value="{{this.name}}">
+        <input type="hidden" name="branch" value="{{this.branch}}">
+        <input type="hidden" name="section" value="{{this.section}}">
+        <input type="hidden" name="status" value="0">
+        <button>Reject</button>
+      </form>
+      {{/each}}
+</div>
+
+{{>footer}}

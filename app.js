@@ -15,6 +15,7 @@ var MySQLStore = require('express-mysql-session')(session);
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var companyRouter = require('./routes/company');
 
 var app = express();
 
@@ -58,6 +59,7 @@ app.use(function(req,res,next){
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/company',companyRouter)
 
 
 
