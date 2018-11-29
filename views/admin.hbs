@@ -11,77 +11,127 @@
 
   <nav class="menu site-menu">
         <ul>
-           <li><a href="/logout">logout</a></li>
-          
-           <li><a href="/student">add student</a>
-           </li>
-           <li><a href="/teacher">add teacher</a></li>
-           <li><a href="/company">add company</a></li>
-
-
-           </li>
+        	<li><a href="/admin">Home</a></li>
+           <li><a href="/logout">Logout</a></li>
         </ul>
     </nav>
 </header>
 
 <div class="content">
-	<form method="post" action="/admin">
 
-		<div class="admin_content">
-		    <h2>HELLO admin</h2>
-		    
-		</div>
-		<div class="clearFix">
-		</div>
-	<div class="boxing">
-		<h1>STUDENT LIST</h1>
-		<ul class="name floatright">
-			{{#each studentdata}}
-			<li><a target="__blank" href="/profile?id={{this.id}}">{{this.name}}</a>
-				 <span><button><a target="__blank" href="/edit?id={{this.id}}">edit</a></button>
-				 	<form method="post" action="/admin">
-						<input type="hidden" name="id" value="{{this.id}}">
-						<button>remove</button>
-					</form>
-					
-				 </span></li>
+	<div class="palce_student"> 
+		<h1 class="place_header">Student Placement Status</h1>
+
+			<table>
+		  <tr>
+		    <th>Student Name</th>
+		    <th>Company Name</th>
+		    <th>Placement Status</th>
+		  </tr>
+
+
+
+
+			{{#each placed}}
+				  <tr>
+				    <td>{{this.name}}</td>
+				    <td>{{this.cname}}</td>
+				    	{{#if this.status}}
+				    		<td><span style="color:green;">Accepted</span></td>
+				    	{{ else }}
+				    		<td><span style="color:red;"> Rejected</span></td>
+				    	{{/if}}
+				  </tr>
 			{{/each}}
-		</ul>
+
+
+
+
+	</table>
+
+
+	
+	</div>
+
+<div class="list_content">
+	<h1>Placement Database</h1>
+	<div class="boxing">
+
+		<table>
+		  <tr>
+		    <th>Students </th>
+		  </tr>
+
+		 
+		  	{{#each studentdata}}
+		  	<tr>
+		  		<td>
+		  		<a style="float:left;" href="/profile?id={{this.id}}">{{this.name}}</a><span style="float:right;"> <a style="font-size:14px;color:#fff;padding:5px;background:#8BC34A;margin-right:3px;" href="/edit?id={{this.id}}"> Edit </a> 
+		  		<form style="display:inline;" method="post" action="/admin">
+						<input type="hidden" name="id" value="{{this.id}}">
+						<button style="border:none;cursor:pointer;background:red;color:#fff;padding:5px;">remove</button>
+					</form></span>
+			</td>
+		</tr>
+		  	{{/each}}
+		  
+
+
+
+		</table>
+		
 	</div>
 	<div class="unboxing">
-		<h1>TEACHER LIST</h1>
-		<ul class="teacher floatright">
-			{{#each teacherdata}}
-			<li><a target="__blank" href="/tprofile?id={{this.id}}">{{this.name}}</a>
-				<span><button><a target="__blank" href="/tedit?id={{this.id}}">edit</a></button>
-					<form method="post" action="/admin">
+		<table>
+		  <tr>
+		    <th>Teacher </th>
+		  </tr>
+
+		 
+		  	{{#each teacherdata}}
+		  	<tr>
+		  		<td>
+		  		<a style="float:left;" href="/tprofile?id={{this.id}}">{{this.name}}</a><span style="float:right;"> <a style="font-size:14px;color:#fff;padding:5px;background:#8BC34A;margin-right:3px;" href="/tedit?id={{this.id}}"> Edit </a> 
+		  		<form style="display:inline;" method="post" action="/admin">
 						<input type="hidden" name="id" value="{{this.id}}">
-						<button>remove</button>
-					</form>
-					
-				</span></li>
-			{{/each}}
-			
-		</ul>
+						<button style="border:none;cursor:pointer;background:red;color:#fff;padding:5px;">remove</button>
+					</form></span>
+			</td>
+		</tr>
+		  	{{/each}}
+		  
+
+
+
+		</table>
 	</div>
 	<div class="autoboxing">
-		<h1>COMPANY LIST</h1>
-		<ul class="company floatright">
-			 {{#each companydata}}
-			<li><a target="__blank" href="/cprofile?id={{this.id}}">{{this.name}}</a>
-				<span><button><a target="__blank" href="/cedit?id={{this.id}}">edit</a></button>
-					<form method="post" action="/admin">
+		<table>
+		  <tr>
+		    <th>Company </th>
+		  </tr>
+
+		 
+		  	{{#each companydata}}
+		  	<tr>
+		  		<td>
+		  		<a style="float:left;" href="/cprofile?id={{this.id}}">{{this.name}}</a><span style="float:right;"> <a style="font-size:14px;color:#fff;padding:5px;background:#8BC34A;margin-right:3px;" href="/cedit?id={{this.id}}"> Edit </a> 
+		  		<form style="display:inline;" method="post" action="/admin">
 						<input type="hidden" name="id" value="{{this.id}}">
-						<button>remove</button>
-					</form>
-					
-				</span></li>
-			{{/each}}
-			  
-			
-		</ul>
+						<button style="border:none;cursor:pointer;background:red;color:#fff;padding:5px;">remove</button>
+					</form></span>
+			</td>
+		</tr>
+		  	{{/each}}
+		  
+
+
+
+		</table>
 	</div>	
-	</form>
+</div>
+
+
 </div>
 
 {{>footer}}

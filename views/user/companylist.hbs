@@ -1,0 +1,22 @@
+{{>header}}
+
+<div class="company-list">
+  {{#if msg }}
+    <h1>{{msg}}</h1>
+  {{else}}
+
+  <h1>Select Company To Apply:</h1>
+
+  {{/if}}
+   
+  {{#each data}}
+      <li> {{this.name}} <span style="float:right;">
+        <form id="applyForm" method="post"> 
+            <input type="hidden" name="cid" value="{{this.id}}">
+            <button>Apply {{sdata}}</button>
+        </form>
+      </span> </li>
+      {{/each}}
+</div>
+
+{{>footer}}

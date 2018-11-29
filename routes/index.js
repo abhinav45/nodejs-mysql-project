@@ -8,7 +8,7 @@ const saltRounds = 10;
 
 router.get('/createtable1',function(req,res){
 	var db = require('../db');
-	db.query('create table student(id int, name varchar(255), usn varchar(255), email varchar(5), phoneno varchar(10), dob varchar(10), sex varchar(10),section varchar(10),branch varchar(10),year_of_passing varchar(10),backlog varchar(10),cgpa varchar(10),percentage varchar(10),mark varchar(10),foreign key (id) references main(id) on delete cascade)',function(err){
+	db.query('create table applied(id int primary key auto_increment, cid int references company(id) on delete cascade,name varchar(255), sid int references student(id) on delete cascade)',function(err){
 		if(err) throw err;
 		res.send('Table Created.')
 	});
@@ -457,11 +457,11 @@ router.get('/profile', function(req, res, next){
 	router.get('/admin',authenticationMiddleware(), function(req, res, next) {
 		var db=require('../db.js');
 		
-		db.query("SELECT * FROM student;select * from teacher;select * from company",function(err,results,fields){
+		db.query("SELECT * FROM student;select * from teacher;select * from company;select * from placed",function(err,results,fields){
 			if (err) throw err;
 			console.log(results);
 		
-	  res.render('admin', { title: 'data are fetches',studentdata:results[0],teacherdata:results[1],companydata:results[2]});
+	  res.render('admin', { title: 'data are fetches',studentdata:results[0],teacherdata:results[1],companydata:results[2],placed:results[3]});
 	});
 		
 
